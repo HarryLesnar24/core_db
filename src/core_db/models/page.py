@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlmodel import SQLModel, Field, Column, Enum, func, Relationship
 import uuid
 from edwh_uuid7 import uuid7
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, String
 import sqlalchemy.dialects.postgresql as pg
 from sqlalchemy import UniqueConstraint
 from typing import List, Optional
@@ -42,8 +42,10 @@ class Page(SQLModel, table=True):
         )
     )
 
-    img_path: str = Field(sa_type=pg.VARCHAR, nullable=True)
+    img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
+
 
     book: Optional["Book"] = Relationship(back_populates='pages') # type: ignore
 
     chunks: List['Chunk'] = Relationship(back_populates='page', sa_relationship_kwargs={'lazy': 'raise_on_sql'}) # type: ignore
+ 

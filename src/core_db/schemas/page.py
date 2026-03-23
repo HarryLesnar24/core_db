@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 class PageIndexEnum(str, Enum):
     pending = "PENDING"
+    analyzed = "ANALYZED"
     text = "TEXT"
     quick = "QUICK"
     deep = "DEEP"
@@ -12,3 +13,7 @@ class PageIndexEnum(str, Enum):
 class PageStatusEnum(str, Enum):
     complete = "COMPLETED"
     fail = "FAILED"
+
+
+
+    
