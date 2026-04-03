@@ -44,6 +44,7 @@ class Page(SQLModel, table=True):
 
     img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
 
+    table_img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
 
     book: Optional["Book"] = Relationship(back_populates='pages') # type: ignore
 

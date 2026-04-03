@@ -13,7 +13,8 @@ class Chunk(SQLModel, table=True):
     page_uid: uuid.UUID = Field(foreign_key='pages.uid', nullable=False, index=True)
     book_uid: uuid.UUID = Field(foreign_key='books.uid', nullable=False, index=True)
     user_uid: uuid.UUID = Field(foreign_key='users.uid', nullable=False, index=True)
-    chunk_index: int = Field(nullable=False)
+    page_no: int = Field(nullable=False, sa_type=pg.INTEGER)
+    chunk_index: int = Field(nullable=False, sa_type=pg.INTEGER)
     chunk_data: str = Field(sa_column=Column(TEXT, nullable=False))
     page: Optional["Page"] = Relationship(back_populates='chunks') # type: ignore
     book: Optional["Book"] = Relationship() # type: ignore
