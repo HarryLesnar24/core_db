@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel, Field, Column, func, Enum
+from sqlmodel import SQLModel, Field, Column, func, Enum, ForeignKey
 from datetime import datetime
 from sqlalchemy import DateTime, UniqueConstraint, Index, text
 import sqlalchemy.dialects.postgresql as pg
@@ -23,10 +23,14 @@ class Job(SQLModel, table=True):
         )
     )
     job_uid: uuid.UUID = Field(
-        sa_column=Column(pg.UUID, primary_key=True), default_factory=uuid7
+        sa_column=Column(pg.UUID, primary_key=True, default=uuid7), default_factory=uuid7
     )
-    book_uid: uuid.UUID = Field(foreign_key="books.uid", nullable=False, index=True)
-    user_uid: uuid.UUID = Field(foreign_key="users.uid", nullable=False, index=True)
+    book_uid: uuid.UUID = Field(
+        sa_column=Column(pg.UUID, ForeignKey("books.uid"), nullable=False, index=True)
+    )
+    user_uid: uuid.UUID = Field(
+        sa_column=Column(pg.UUID, ForeignKey("users.uid"), nullable=False, index=True)
+    )
     created_at: datetime = Field(
         sa_column=Column(
             DateTime(timezone=True), server_default=func.now(), nullable=False
