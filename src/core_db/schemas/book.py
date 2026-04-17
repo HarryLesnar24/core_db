@@ -9,7 +9,7 @@ from enum import Enum
 class BookCreateModel(BaseModel):
     filename: str = Field(max_length=512)
     filepath: str = Field(max_length=2048)
-    user_uid: str
+    user_uid: uuid.UUID
 
 
 # class BookUploadModel(BookCreateModel):

@@ -1,6 +1,6 @@
 from qdrant_client.async_qdrant_client import AsyncQdrantClient
 from qdrant_client.models import Batch, Distance, VectorParams, HnswConfigDiff, PayloadSchemaType, UuidIndexParams, UuidIndexType,ExtendedPointId
-from qdrant_client.common.client_exceptions import QdrantException
+
 
 from typing import Any, List, Dict
 
