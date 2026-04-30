@@ -32,6 +32,6 @@ class BookUpdateModel(BaseModel):
 class BookStatusModel(str, Enum):
     pending = "pending"
     processing = "processing"
-    ready_partial = "bootstrap complete"
-    ready_full = "background complete"
+    ready_partial = "ready_partial"
+    ready_full = "ready_full"
     failed = "failed"

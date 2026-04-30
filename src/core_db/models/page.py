@@ -45,7 +45,9 @@ class Page(SQLModel, table=True):
     img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
 
     table_img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
-
+    
+    code_img_path: List[str] = Field(sa_column=Column(pg.ARRAY(String, zero_indexes=True), nullable=True))
+    
     book: Optional["Book"] = Relationship(back_populates='pages') # type: ignore
 
     chunks: List['Chunk'] = Relationship(back_populates='page', sa_relationship_kwargs={'lazy': 'raise_on_sql'}) # type: ignore
